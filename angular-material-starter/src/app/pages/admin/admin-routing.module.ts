@@ -14,6 +14,11 @@ const routes: Routes = [
         data: { title: 'Settings' },
         component: SettingsComponent,
       },
+      {
+        path: '',
+        redirectTo: 'settings',
+        pathMatch: 'full',
+      },
     ],
   },
 ];
