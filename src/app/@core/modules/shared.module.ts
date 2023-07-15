@@ -14,6 +14,7 @@ import { MaterialModule } from './material.module';
     MaterialModule.forRoot(),
     ReactiveFormsModule,
     RouterModule,
+    MaterialModule,
   ],
   exports: [MaterialModule, ReactiveFormsModule, FormsModule, ThemeModule],
   declarations: [],

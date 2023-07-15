@@ -1,11 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header-fixed">
   <mat-toolbar-row>
     <button mat-icon-button aria-label="icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="pointer" [routerLink]="['/pages/home']"
-      >Angular Material Starter</span
-    >
+    <span class="pointer" [routerLink]="['/pages/home']">Amulek Admin</span>
     <span class="header-spacer"></span>
     <button
       mat-icon-button
@@ -18,9 +16,20 @@
     <button
       mat-icon-button
       title="logout"
+      [matMenuTriggerFor]="actionMenu"
       aria-label="icon-button with logout icon"
     >
-      <mat-icon>logout</mat-icon>
+      <mat-icon>more_vert</mat-icon>
     </button>
+    <mat-menu #actionMenu="matMenu">
+      <!-- <button mat-menu-item>
+        <mat-icon>settings_applications</mat-icon>
+        <span>Settings</span>
+      </button> -->
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
