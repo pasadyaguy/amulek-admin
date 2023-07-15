@@ -1,1 +1,26 @@
-<mat-toolbar></mat-toolbar>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button aria-label="icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="pointer" [routerLink]="['/pages/home']"
+      >Angular Material Starter</span
+    >
+    <span class="header-spacer"></span>
+    <button
+      mat-icon-button
+      [routerLink]="['/pages/admin/settings']"
+      title="settings"
+      aria-label="icon-button with settings icon"
+    >
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      title="logout"
+      aria-label="icon-button with logout icon"
+    >
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
