@@ -3,7 +3,14 @@
   autosize
   hasBackdrop="false"
 >
-  <mat-sidenav #drawer class="drawer" mode="over" opened="true">
+  <mat-sidenav
+    #drawer
+    class="drawer"
+    mode="over"
+    opened="true"
+    (mouseenter)="onMouseOver()"
+    (mouseleave)="onMouseOut()"
+  >
     <mat-nav-list class="sidenav-list">
       <mat-list-item class="sidenav-list-item">
         <mat-icon>person</mat-icon>

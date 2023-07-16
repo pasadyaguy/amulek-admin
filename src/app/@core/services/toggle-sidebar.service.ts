@@ -6,12 +6,31 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ToggleSidebarService {
   private isExpanded = new BehaviorSubject<boolean>(false);
+  private isLocked = new BehaviorSubject<boolean>(false);
 
   getIsExpanded() {
     return this.isExpanded.asObservable();
   }
 
+  getIsLocked() {
+    return this.isLocked.asObservable();
+  }
+
   toggleValue() {
-    this.isExpanded.next(!this.isExpanded.value);
+    const newValue = !this.isExpanded.value;
+    this.isExpanded.next(newValue);
+    this.isLocked.next(newValue);
+  }
+
+  expand() {
+    if (!this.isLocked.value) {
+      this.isExpanded.next(true);
+    }
+  }
+
+  collapse() {
+    if (!this.isLocked.value) {
+      this.isExpanded.next(false);
+    }
   }
 }
