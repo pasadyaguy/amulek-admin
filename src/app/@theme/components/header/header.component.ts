@@ -14,7 +14,7 @@ import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.serv
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-  isDarkMode = false;
+  isDarkMode: boolean;
   @ViewChild('darkModeSwitch', { read: ElementRef }) element:
     | ElementRef
     | undefined;
@@ -28,8 +28,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private toggleSidbarService: ToggleSidebarService,
     private toggleDarkModeService: ToggleDarkmodeService
   ) {
-    this.toggleDarkModeService.initTheme();
-    this.isDarkMode = this.toggleDarkModeService.isDarkMode();
+    this.isDarkMode = this.toggleDarkModeService.initTheme();
   }
 
   ngOnInit() {}
@@ -43,11 +42,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         .querySelector('.mdc-switch__icon--off')
         .firstChild.setAttribute('d', this.sun);
     }
+    this.isDarkMode = this.toggleDarkModeService.isDarkMode();
   }
 
   toggleDarkMode() {
+    this.isDarkMode
+      ? this.toggleDarkModeService.update('light-mode')
+      : this.toggleDarkModeService.update('dark-mode');
     this.isDarkMode = this.toggleDarkModeService.isDarkMode();
-    this.isDarkMode ? this.toggleDarkModeService.update('light-mode') : this.toggleDarkModeService.update('dark-mode');
   }
 
   toggleSideNav() {

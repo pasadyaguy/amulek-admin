@@ -5,15 +5,29 @@ import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 })
 export class ToggleDarkmodeService {
   private renderer: Renderer2;
-  private colorTheme: string = 'light-mode';
+  private colorTheme: string = '';
 
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
-  initTheme() {
+  initTheme(): boolean {
     this.getColortheme();
     this.renderer.addClass(document.body, this.colorTheme);
+    return this.isDarkMode();
+  }
+
+  private getColortheme() {
+    if (localStorage.getItem('user-theme')) {
+      this.colorTheme = localStorage.getItem('user-theme') as string;
+    } else {
+      this.colorTheme = 'light-mode';
+    }
+  }
+
+  private setColortheme(theme: string) {
+    this.colorTheme = theme;
+    localStorage.setItem('user-theme', theme);
   }
 
   update(theme: 'dark-mode' | 'light-mode') {
@@ -25,19 +39,10 @@ export class ToggleDarkmodeService {
   }
 
   isDarkMode() {
-    return this.colorTheme === 'dark-mode';
-  }
-
-  private setColortheme(theme: string) {
-    this.colorTheme = theme;
-    localStorage.setItem('user-theme', theme);
-  }
-
-  private getColortheme() {
-    if (localStorage.getItem('user-theme')) {
-      this.colorTheme = localStorage.getItem('user-theme') as string;
+    if (this.colorTheme === 'dark-mode') {
+      return true;
     } else {
-      this.colorTheme = 'light-mode';
+      return false;
     }
   }
 }
