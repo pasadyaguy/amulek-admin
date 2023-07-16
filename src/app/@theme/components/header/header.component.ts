@@ -46,8 +46,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   toggleDarkMode() {
-    // this.toggleDarkModeService.toggleValue();
     this.isDarkMode = this.toggleDarkModeService.isDarkMode();
+    this.isDarkMode ? this.toggleDarkModeService.update('light-mode') : this.toggleDarkModeService.update('dark-mode');
   }
 
   toggleSideNav() {
