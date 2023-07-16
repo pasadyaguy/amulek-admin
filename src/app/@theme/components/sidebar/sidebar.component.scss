@@ -13,10 +13,13 @@
 .sidenav-list-item {
   display: flex;
   align-items: center;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .sidenav-list-item span {
   vertical-align: top;
+  margin-right: 15px;
 }
 
 .sidenav-list-item mat-icon {
@@ -28,17 +31,4 @@
   margin-top: 64px;
   margin-left: 100px;
   padding: 20px;
-}
-
-.sidenav.mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar {
-  position: relative;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
 }
