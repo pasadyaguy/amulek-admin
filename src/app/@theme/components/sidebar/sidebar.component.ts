@@ -1,7 +1,5 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,12 +8,12 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class SidebarComponent {
   isExpanded: boolean = false;
-  private breakpointObserver = inject(BreakpointObserver);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
+  constructor(private toggleSidebarService: ToggleSidebarService) {}
+
+  ngOnInit() {
+    this.toggleSidebarService.getIsExpanded().subscribe((value) => {
+      this.isExpanded = value;
+    });
+  }
 }

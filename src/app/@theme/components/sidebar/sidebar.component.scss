@@ -6,6 +6,10 @@
   width: 200px;
 }
 
+.sidenav-list {
+  margin-top: 70px;
+}
+
 .sidenav-list-item {
   display: flex;
   align-items: center;
@@ -37,15 +41,4 @@
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
-}
-
-.header-spacer {
-  flex: 1 1 auto;
-}
-
-.header-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
 }
