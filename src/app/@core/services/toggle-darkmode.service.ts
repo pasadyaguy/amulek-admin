@@ -4,7 +4,6 @@ import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
   providedIn: 'root',
 })
 export class ToggleDarkmodeService {
-  // private isDarkMode = new BehaviorSubject<boolean>(false);
   private renderer: Renderer2;
   private colorTheme: string = 'light-mode';
 
@@ -41,18 +40,4 @@ export class ToggleDarkmodeService {
       this.colorTheme = 'light-mode';
     }
   }
-
-  // getIsExpanded() {
-  //   return this.isDarkMode.asObservable();
-  // }
-
-  // toggleValue() {
-  //   this.isDarkMode.next(!this.isDarkMode.value);
-  //   this.setColortheme(this.isDarkMode.value);
-  // }
-
-  // this.toggleControl.valueChanges.subscribe((darkMode) => {
-  //   const darkClassName = 'darkMode';
-  //   this.className = darkMode ? darkClassName : '';
-  // });
 }
