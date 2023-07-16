@@ -7,20 +7,32 @@
     <mat-nav-list class="sidenav-list">
       <mat-list-item class="sidenav-list-item">
         <mat-icon>person</mat-icon>
-        <span *ngIf="isExpanded">Management A</span>
+        <span mat-line class="sidenav-list-item-name" *ngIf="isExpanded"
+          >Management A</span
+        >
       </mat-list-item>
+      <mat-divider class="sidenav-divider"></mat-divider>
       <mat-list-item class="sidenav-list-item">
         <mat-icon>assignment</mat-icon>
-        <span mat-line *ngIf="isExpanded">Management B</span></mat-list-item
+        <span mat-line class="sidenav-list-item-name" *ngIf="isExpanded"
+          >Management B</span
+        ></mat-list-item
       >
+      <mat-divider class="sidenav-divider"></mat-divider>
       <mat-list-item class="sidenav-list-item">
         <mat-icon>domain</mat-icon>
-        <span mat-line *ngIf="isExpanded">Management C</span></mat-list-item
+        <span mat-line class="sidenav-list-item-name" *ngIf="isExpanded"
+          >Management C</span
+        ></mat-list-item
       >
+      <mat-divider class="sidenav-divider"></mat-divider>
       <mat-list-item class="sidenav-list-item">
         <mat-icon>folder</mat-icon>
-        <span mat-line *ngIf="isExpanded">Management X</span></mat-list-item
+        <span mat-line class="sidenav-list-item-name" *ngIf="isExpanded"
+          >Management X</span
+        ></mat-list-item
       >
+      <mat-divider class="sidenav-divider"></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
 
