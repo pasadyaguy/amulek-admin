@@ -1,3 +1,69 @@
-<p>
-  sidebar works!
-</p>
+<mat-sidenav-container class="sidenav-container mat-typography" autosize>
+  <mat-sidenav #drawer class="drawer" mode="side" opened="true">
+    <mat-toolbar
+      ><button
+        mat-icon-button
+        aria-label="icon-button with menu icon"
+        (click)="isExpanded = !isExpanded"
+      >
+        <mat-icon>menu</mat-icon>
+      </button></mat-toolbar
+    >
+    <mat-nav-list>
+      <mat-list-item class="sidenav-list-item">
+        <mat-icon>person</mat-icon>
+        <span *ngIf="isExpanded">Management A</span>
+      </mat-list-item>
+      <mat-list-item class="sidenav-list-item">
+        <mat-icon>assignment</mat-icon>
+        <span mat-line *ngIf="isExpanded">Management B</span></mat-list-item
+      >
+      <mat-list-item class="sidenav-list-item">
+        <mat-icon>domain</mat-icon>
+        <span mat-line *ngIf="isExpanded">Management C</span></mat-list-item
+      >
+      <mat-list-item class="sidenav-list-item">
+        <mat-icon>folder</mat-icon>
+        <span mat-line *ngIf="isExpanded">Management X</span></mat-list-item
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- header and page content/router -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="header-fixed">
+      <mat-toolbar-row>
+        <span class="pointer" [routerLink]="['/pages/home']">Amulek Admin</span>
+        <span class="header-spacer"></span>
+        <button
+          mat-icon-button
+          [routerLink]="['/pages/admin/settings']"
+          title="settings"
+          aria-label="icon-button with settings icon"
+        >
+          <mat-icon>settings</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          title="logout"
+          [matMenuTriggerFor]="actionMenu"
+          aria-label="icon-button with logout icon"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #actionMenu="matMenu">
+          <!-- <button mat-menu-item>
+        <mat-icon>settings_applications</mat-icon>
+        <span>Settings</span>
+      </button> -->
+          <button mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="body-content"><router-outlet></router-outlet></div>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
