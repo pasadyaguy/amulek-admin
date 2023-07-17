@@ -1,7 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use "@angular/material" as mat;
+
 @include mat.core();
+
+$angular-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$teal-palette, 500, 100, 900),
+      accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+      warn: mat.define-palette(mat.$red-palette),
+    ),
+  )
+);
 
 $dark-theme: mat.define-dark-theme(
   (
@@ -13,7 +24,13 @@ $dark-theme: mat.define-dark-theme(
   )
 );
 
-@include mat.all-component-themes($dark-theme);
+.light-mode {
+  @include mat.all-component-colors($angular-default-theme);
+}
+
+.dark-mode {
+  @include mat.all-component-colors($dark-theme);
+}
 
 html,
 body {
@@ -27,4 +44,53 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+
+app-sidebar {
+  .sidenav-container {
+    height: 100%;
+  }
+
+  .sidenav {
+    width: 200px;
+  }
+
+  .sidenav-list {
+    margin-top: 70px;
+  }
+
+  .sidenav-list-item {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .sidenav-list-item span {
+    vertical-align: top;
+  }
+
+  .sidenav-list-item mat-icon {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .sidenav-list-item-name {
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 30px;
+  }
+
+  .body-content {
+    margin-top: 64px;
+    margin-left: 100px;
+    padding: 20px;
+  }
+
+  .sidenav-divider {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.service';
+import { SidebarService } from 'src/app/@core/services/sidebar.service';
+import { ThemeService } from '../../theme.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +8,23 @@ import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.serv
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private toggleSidbarService: ToggleSidebarService) {}
+  themeToggle!: boolean;
+
+  constructor(
+    private sidebarService: SidebarService,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit() {}
 
+  changeTheme() {
+    this.themeToggle
+      ? this.themeService.setTheme('light-mode')
+      : this.themeService.setTheme('dark-mode');
+    this.themeToggle = !this.themeToggle;
+  }
+
   toggleSideNav() {
-    console.log('toggleSideNav');
-    this.toggleSidbarService.toggleValue();
+    this.sidebarService.toggle();
   }
 }
