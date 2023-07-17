@@ -15,9 +15,7 @@ export class HeaderComponent implements OnInit {
     private themeService: ThemeService
   ) {}
 
-  ngOnInit() {
-    this.themeToggle = this.themeService.initTheme();
-  }
+  ngOnInit() {}
 
   changeTheme() {
     this.themeToggle
