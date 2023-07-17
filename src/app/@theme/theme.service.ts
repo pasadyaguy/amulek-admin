@@ -16,7 +16,7 @@ export class ThemeService {
   initTheme(): boolean {
     this.getColorTheme();
     this.renderer.addClass(document.body, this.currentTheme);
-    return true;
+    return this.currentTheme === 'dark-mode' ? true : false;
   }
 
   private getColorTheme() {
