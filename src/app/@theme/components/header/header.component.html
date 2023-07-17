@@ -9,13 +9,24 @@
     </button>
     <span class="pointer" [routerLink]="['/pages/home']">Amulek Admin</span>
     <span class="header-spacer"></span>
-    <mat-slide-toggle
-      #darkModeSwitch
-      (toggleChange)="changeTheme()"
-      [checked]="!themeToggle"
-    ></mat-slide-toggle>
-    <!-- sunny
-nightlight -->
+    <button
+      mat-icon-button
+      *ngIf="!themeToggle"
+      (click)="changeTheme()"
+      title="Dark Mode"
+      aria-label="icon-button with theme toggle dark icon"
+    >
+      <mat-icon>bedtime</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      *ngIf="themeToggle"
+      (click)="changeTheme()"
+      title="Light Mode"
+      aria-label="icon-button with theme toggle light icon"
+    >
+      <mat-icon>light_mode</mat-icon>
+    </button>
     <button
       mat-icon-button
       [routerLink]="['/pages/admin/settings']"
