@@ -13,31 +13,12 @@ export class ThemeService {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
-  initTheme(): boolean {
-    this.getColorTheme();
-    this.renderer.addClass(document.body, this.currentTheme);
-    return true;
-  }
-
-  private getColorTheme() {
-    if (localStorage.getItem('user-theme')) {
-      this.currentTheme = localStorage.getItem('user-theme') as string;
-    } else {
-      this.currentTheme = 'light-mode';
-    }
-  }
-
-  private setColortheme(theme: string) {
-    this.currentTheme = theme;
-    localStorage.setItem('user-theme', theme);
-  }
-
   setTheme(theme: 'dark-mode' | 'light-mode') {
-    this.setColortheme(theme);
+    this.currentTheme = theme;
     const previousColorTheme =
       theme === 'dark-mode' ? 'light-mode' : 'dark-mode';
     this.renderer.removeClass(document.body, previousColorTheme);
-    this.themeChanges$.next({ theme, previous: this.currentTheme });
+    this.themeChanges$.next({ theme, previous: previousColorTheme });
     this.renderer.addClass(document.body, theme);
   }
 
