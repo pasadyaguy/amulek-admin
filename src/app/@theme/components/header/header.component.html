@@ -11,9 +11,11 @@
     <span class="header-spacer"></span>
     <mat-slide-toggle
       #darkModeSwitch
-      (toggleChange)="toggleDarkMode()"
-      [checked]="!isDarkMode"
+      (toggleChange)="changeTheme()"
+      [checked]="!themeToggle"
     ></mat-slide-toggle>
+    <!-- sunny
+nightlight -->
     <button
       mat-icon-button
       [routerLink]="['/pages/admin/settings']"

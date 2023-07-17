@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.service';
+import { SidebarService } from 'src/app/@core/services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,24 +10,24 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   isExpanded: boolean = false;
   isLocked: boolean = false;
 
-  constructor(private toggleSidebarService: ToggleSidebarService) {}
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.toggleSidebarService.getIsExpanded().subscribe((value) => {
+    this.sidebarService.getIsExpanded().subscribe((value) => {
       this.isExpanded = value;
     });
-    this.toggleSidebarService.getIsLocked().subscribe((value) => {
+    this.sidebarService.getIsLocked().subscribe((value) => {
       this.isLocked = value;
     });
   }
 
   onMouseOver() {
-    this.toggleSidebarService.expand();
+    this.sidebarService.expand();
   }
 
   onMouseOut() {
-    this.toggleSidebarService.collapse();
+    this.sidebarService.collapse();
   }
 }

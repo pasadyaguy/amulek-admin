@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ToggleSidebarService {
+export class SidebarService {
   private isExpanded = new BehaviorSubject<boolean>(false);
   private isLocked = new BehaviorSubject<boolean>(false);
 
@@ -16,7 +16,7 @@ export class ToggleSidebarService {
     return this.isLocked.asObservable();
   }
 
-  toggleValue() {
+  toggle() {
     const newValue = !this.isExpanded.value;
     this.isExpanded.next(newValue);
     this.isLocked.next(newValue);

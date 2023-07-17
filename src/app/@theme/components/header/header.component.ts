@@ -5,8 +5,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ToggleDarkmodeService } from 'src/app/@core/services/toggle-darkmode.service';
-import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.service';
+import { SidebarService } from 'src/app/@core/services/sidebar.service';
+import { ThemeService } from '../../theme.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ import { ToggleSidebarService } from 'src/app/@core/services/toggle-sidebar.serv
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-  isDarkMode: boolean;
+  themeToggle!: boolean;
   @ViewChild('darkModeSwitch', { read: ElementRef }) element:
     | ElementRef
     | undefined;
@@ -25,11 +25,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     'M12 21q-3.75 0-6.375-2.625T3 12q0-3.75 2.625-6.375T12 3q.2 0 .425.013 .225.013 .575.038-.9.8-1.4 1.975-.5 1.175-.5 2.475 0 2.25 1.575 3.825Q14.25 12.9 16.5 12.9q1.3 0 2.475-.463T20.95 11.15q.025.3 .038.488Q21 11.825 21 12q0 3.75-2.625 6.375T12 21Zm0-1.5q2.725 0 4.75-1.687t2.525-3.963q-.625.275-1.337.412Q17.225 14.4 16.5 14.4q-2.875 0-4.887-2.013T9.6 7.5q0-.6.125-1.287.125-.687.45-1.562-2.45.675-4.062 2.738Q4.5 9.45 4.5 12q0 3.125 2.188 5.313T12 19.5Zm-.1-7.425Z';
 
   constructor(
-    private toggleSidbarService: ToggleSidebarService,
-    private toggleDarkModeService: ToggleDarkmodeService
-  ) {
-    this.isDarkMode = this.toggleDarkModeService.initTheme();
-  }
+    private sidebarService: SidebarService,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit() {}
 
@@ -42,17 +40,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         .querySelector('.mdc-switch__icon--off')
         .firstChild.setAttribute('d', this.sun);
     }
-    this.isDarkMode = this.toggleDarkModeService.isDarkMode();
   }
 
-  toggleDarkMode() {
-    this.isDarkMode
-      ? this.toggleDarkModeService.update('light-mode')
-      : this.toggleDarkModeService.update('dark-mode');
-    this.isDarkMode = this.toggleDarkModeService.isDarkMode();
+  changeTheme() {
+    this.themeToggle
+      ? this.themeService.setTheme('light-mode')
+      : this.themeService.setTheme('dark-mode');
+    this.themeToggle = !this.themeToggle;
   }
 
   toggleSideNav() {
-    this.toggleSidbarService.toggleValue();
+    this.sidebarService.toggle();
   }
 }
