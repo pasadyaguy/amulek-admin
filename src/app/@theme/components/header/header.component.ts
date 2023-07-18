@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { UserInfo } from 'src/app/@core/interfaces/user-info';
 import { SidebarService } from 'src/app/@core/services/sidebar.service';
 import { ThemeService } from '../../theme.service';
@@ -14,10 +15,15 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private sidebarService: SidebarService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private oidcSecurityService: OidcSecurityService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.oidcSecurityService.getUserData().subscribe((user) => {
+      this.user.fullName = user.given_name + ' ' + user.family_name;
+    });
+  }
 
   changeTheme() {
     this.themeToggle
@@ -28,5 +34,11 @@ export class HeaderComponent implements OnInit {
 
   toggleSideNav() {
     this.sidebarService.toggle();
+  }
+
+  logout(): void {
+    this.oidcSecurityService.logoff().subscribe((result) => {
+      console.log(result);
+    });
   }
 }

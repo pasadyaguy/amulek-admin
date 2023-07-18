@@ -192,7 +192,16 @@
         </section>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>LIKE</button>
+        <button (click)="login()" mat-button>Login with Ping</button>
+      </mat-card-actions>
+      <mat-card-actions>
+        <button (click)="getP1User()" mat-button>Get P1 User</button>
+      </mat-card-actions>
+      <mat-card-actions>
+        <button (click)="checkAuth()" mat-button>Check Auth</button>
+      </mat-card-actions>
+      <mat-card-actions>
+        <button (click)="protectedAPI()" mat-button>Call Protected API</button>
       </mat-card-actions>
     </mat-card>
   </div>
