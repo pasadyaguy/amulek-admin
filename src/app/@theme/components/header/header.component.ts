@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInfo } from 'src/app/@core/interfaces/user-info';
 import { SidebarService } from 'src/app/@core/services/sidebar.service';
 import { ThemeService } from '../../theme.service';
 
@@ -9,6 +10,7 @@ import { ThemeService } from '../../theme.service';
 })
 export class HeaderComponent implements OnInit {
   themeToggle!: boolean;
+  user: UserInfo = new UserInfo();
 
   constructor(
     private sidebarService: SidebarService,

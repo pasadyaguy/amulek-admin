@@ -27,6 +27,11 @@
     >
       <mat-icon>light_mode</mat-icon>
     </button>
+    <app-user
+      [name]="user.fullName"
+      [title]="user.title"
+      [picture]="user.userPhoto"
+    ></app-user>
     <button
       mat-icon-button
       [routerLink]="['/pages/admin/settings']"
