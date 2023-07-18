@@ -92,3 +92,24 @@ app-sidebar {
     width: 100%;
   }
 }
+
+app-user.shape-round .user-picture {
+  border-radius: 50%;
+}
+
+app-user.size-medium .initials,
+app-user.size-medium .user-name,
+app-user.size-medium .user-title {
+  font-size: 0.7375rem;
+  line-height: 1rem;
+}
+
+app-user.size-medium .user-picture {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+app-user .user-picture {
+  background-color: transparent;
+  border: 1px solid #1f1f1f;
+}

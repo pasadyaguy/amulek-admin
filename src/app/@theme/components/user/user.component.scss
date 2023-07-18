@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+
+  .user-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .user-picture {
+    position: relative;
+    flex-shrink: 0;
+
+    &.image {
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    &.initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .user-name,
+  .user-title {
+    text-align: left;
+  }
+
+  .info-container {
+    margin-left: 0.5rem;
+  }
+}
