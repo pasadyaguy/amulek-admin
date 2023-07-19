@@ -6,18 +6,19 @@ import {
   LogLevel,
   OpenIdConfiguration,
 } from 'angular-auth-oidc-client';
+import { environment } from 'src/environments/environment';
 
 let x: OpenIdConfiguration;
 @NgModule({
   imports: [
     AuthModule.forRoot({
       config: {
-        authority: 'https://authdev.tgh.org/as',
+        authority: '{authority}',
         redirectUrl: window.location.origin + `/pages/callback`,
         postLogoutRedirectUri: window.location.origin + `/pages/logged-off`,
-        clientId: 'd05a4aba-d84c-46da-b1fb-943f5234ec34',
-        secureRoutes: ['http://localhost/project', 'https://api.pingone.com'],
-        scope: 'openid profile email tgh:api:user offline_access', // 'openid profile ' + your scopes
+        clientId: environment.clientID,
+        secureRoutes: ['http://localhost/project'],
+        scope: 'openid profile email offline_access', // 'openid profile ' + your scopes
         responseType: 'code',
         useRefreshToken: true,
         silentRenew: true,
