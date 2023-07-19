@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import jwtDecode from 'jwt-decode';
 import { UserInfo } from 'src/app/@core/interfaces/user-info';
 import { SidebarService } from 'src/app/@core/services/sidebar.service';
 import { ThemeService } from '../../theme.service';
@@ -20,8 +21,16 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.oidcSecurityService.getUserData().subscribe((user) => {
-      this.user.fullName = user.given_name + ' ' + user.family_name;
+    this.oidcSecurityService.isAuthenticated$.subscribe((result) => {
+      if (result.isAuthenticated) {
+        this.oidcSecurityService.getAccessToken().subscribe((token) => {
+          const decodedToken: any = jwtDecode(token);
+          this.user.fullName =
+            decodedToken.given_name + ' ' + decodedToken.family_name;
+          this.user.title = decodedToken.title;
+          this.user.userPhoto = decodedToken.photo;
+        });
+      }
     });
   }
 
@@ -37,8 +46,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.oidcSecurityService.logoff().subscribe((result) => {
-      console.log(result);
-    });
+    this.oidcSecurityService.logoff().subscribe((result) => {});
   }
 }
