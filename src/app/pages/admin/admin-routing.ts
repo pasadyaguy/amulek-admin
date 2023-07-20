@@ -1,10 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AdminService } from 'src/app/@core/services/admin.service';
+import { Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { SettingsComponent } from './settings/settings.component';
 
-const routes: Routes = [
+export const ADMIN_ROUTES: Routes = [
   {
     path: '',
     component: AdminComponent,
@@ -22,12 +20,3 @@ const routes: Routes = [
     ],
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [AdminService],
-})
-export class AdminRoutingModule {}
-
-export const routedComponents = [AdminComponent];
