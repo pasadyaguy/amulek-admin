@@ -14,16 +14,16 @@ describe('SidebarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SidebarComponent],
-      imports: [
+    imports: [
         NoopAnimationsModule,
         MatButtonModule,
         MatIconModule,
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-      ]
-    }).compileComponents();
+        SidebarComponent,
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

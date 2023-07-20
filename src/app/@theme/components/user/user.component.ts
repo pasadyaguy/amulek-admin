@@ -1,10 +1,13 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss'],
+    standalone: true,
+    imports: [NgIf],
 })
 export class UserComponent implements OnInit {
   imageBackgroundStyle!: SafeStyle | null;
