@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
+import { LayoutComponent } from '../@theme/components/layout/layout.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PagesComponent } from './pages.component';
 
 export const PAGES_ROUTES: Routes = [
   {
     path: '',
-    component: PagesComponent,
+    component: LayoutComponent,
     children: [
       {
         path: 'home',
