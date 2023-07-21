@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -15,11 +14,9 @@ import { ThemeService } from 'src/app/@theme/theme.service';
   imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIconModule],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private themeService: ThemeService,
-    private oidcSecurityService: OidcSecurityService,
-    private http: HttpClient
-  ) {}
+  oidcSecurityService = inject(OidcSecurityService);
+
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit() {
     this.themeService.onThemeChange().subscribe((value) => {

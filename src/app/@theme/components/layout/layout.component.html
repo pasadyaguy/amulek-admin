@@ -1,0 +1,157 @@
+<div class="navbar-container" [class.example-is-mobile]="mobileQuery.matches">
+  <!-- Top navbar -->
+  <mat-toolbar class="navbar" color="primary">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <a class="navbar-brand" [routerLink]="['/']" matTooltip="Home">
+      <h1>Amulek Admin</h1>
+    </a>
+
+    <span class="navbar-spacer"></span>
+
+    <app-user
+      [name]="user.fullName"
+      [title]="user.title"
+      [picture]="user.userPhoto"
+    ></app-user>
+    <button
+      mat-icon-button
+      title="settings"
+      [matMenuTriggerFor]="actionMenu"
+      aria-label="icon-button with app settings menu icons"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #actionMenu="matMenu">
+      <!-- <button mat-menu-item>
+        <mat-icon>settings_applications</mat-icon>
+        <span>Settings</span>
+      </button> -->
+      <button
+        mat-menu-item
+        *ngIf="!themeToggle"
+        (click)="changeTheme()"
+        title="Dark Mode"
+        aria-label="icon-button with theme toggle dark icon"
+      >
+        <mat-icon>bedtime</mat-icon>
+        <span>Dark</span>
+      </button>
+      <button
+        mat-menu-item
+        *ngIf="themeToggle"
+        (click)="changeTheme()"
+        title="Light Mode"
+        aria-label="icon-button with theme toggle light icon"
+      >
+        <mat-icon>light_mode</mat-icon>
+        <span>Light</span>
+      </button>
+      <button
+        mat-menu-item
+        [routerLink]="['/pages/admin/settings']"
+        title="settings"
+        aria-label="icon-button with settings icon"
+      >
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="navbar-sidenav-container">
+    <!-- Side nav -->
+    <mat-sidenav
+      #snav
+      [opened]="!mobileQuery.matches"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      class="sidenav"
+    >
+      <mat-nav-list>
+        <mat-list-item
+          class="sidenav-list-item"
+          [routerLink]="['/pages/home']"
+          routerLinkActive="active"
+        >
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle class="sidenav-list-item-name"
+            >Dashbaord</span
+          ></mat-list-item
+        >
+
+        <mat-list-item
+          class="sidenav-list-item"
+          [routerLink]="['/pages/admin/settings']"
+          routerLinkActive="active"
+        >
+          <mat-icon matListItemIcon>business</mat-icon>
+          <span matListItemTitle class="sidenav-list-item-name"
+            >Customers</span
+          ></mat-list-item
+        >
+
+        <mat-list-item
+          class="sidenav-list-item"
+          [routerLink]="['/pages/admin/settings']"
+          routerLinkActive="active"
+        >
+          <mat-icon matListItemIcon>people</mat-icon>
+          <span matListItemTitle class="sidenav-list-item-name"
+            >Users</span
+          ></mat-list-item
+        >
+
+        <mat-list-item
+          class="sidenav-list-item"
+          [routerLink]="['/pages/admin/settings']"
+          routerLinkActive="active"
+        >
+          <mat-icon matListItemIcon>person</mat-icon>
+          <span matListItemTitle class="sidenav-list-item-name"
+            >Account</span
+          ></mat-list-item
+        >
+
+        <mat-divider></mat-divider>
+
+        <mat-list-item
+          class="sidenav-list-item"
+          [routerLink]="['/pages/admin/settings']"
+          routerLinkActive="active"
+        >
+          <mat-icon matListItemIcon>exit_to_app</mat-icon>
+          <span matListItemTitle class="sidenav-list-item-name"
+            >Log out</span
+          ></mat-list-item
+        >
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content class="sidenav-content">
+      <div class="progress-bar-container">
+        <mat-progress-bar
+          color="accent"
+          mode="indeterminate"
+          *ngIf="spinnerService.visibility | async"
+        >
+        </mat-progress-bar>
+        <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
+      </div>
+
+      <div class="container" fxLayout="row" fxLayoutAlign="center none">
+        <div fxFlex="95%">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

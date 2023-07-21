@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @use "@angular/material" as mat;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 @include mat.core();
 
@@ -30,14 +31,87 @@ $dark-theme: mat.define-dark-theme(
   @include mat.all-component-colors($dark-theme);
 }
 
-html,
-body {
-  height: 100%;
-  background-color: #efefef;
-}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}
+
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.spinner {
+  left: 49%;
+  position: fixed !important;
+  top: 15%;
+  z-index: 9999;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mat-list-item,
+.mat-menu-item {
+  font-size: 14px !important;
+}
+
+.command-wrapper button {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.mat-column-actions {
+  flex: 0 0 60px;
+}
+
+p .mat-icon {
+  vertical-align: middle;
+}
+
+.mat-slide-toggle.full-width {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.mat-tooltip {
+  font-size: 14px;
+}
+
+.fixed-fab {
+  position: fixed !important;
+  right: 2%;
+  bottom: 3%;
+}
+
+.animate {
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .pointer {

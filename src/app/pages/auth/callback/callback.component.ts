@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
@@ -9,7 +9,7 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
   template: '',
 })
 export class CallbackComponent implements OnInit {
-  constructor(private oidcSecurityService: OidcSecurityService) {}
+  oidcSecurityService = inject(OidcSecurityService);
 
   ngOnInit() {
     this.oidcSecurityService
