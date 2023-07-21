@@ -18,6 +18,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterModule } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+import jwtDecode from 'jwt-decode';
 import { UserInfo } from 'src/app/@core/interfaces/user-info';
 import { SpinnerService } from 'src/app/@core/services/spinner.service';
 import { ThemeService } from '../../theme.service';
@@ -49,6 +51,7 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   spinnerService = inject(SpinnerService);
   changeDetectorRef = inject(ChangeDetectorRef);
   themeService = inject(ThemeService);
+  oidcSecurityService = inject(OidcSecurityService);
 
   private _mobileQueryListener!: () => void;
   mobileQuery!: MediaQueryList;
@@ -61,6 +64,18 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
     // tslint:disable-next-line: deprecation
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.oidcSecurityService.isAuthenticated$.subscribe((result) => {
+      if (result.isAuthenticated) {
+        this.oidcSecurityService.getAccessToken().subscribe((token) => {
+          const decodedToken: any = jwtDecode(token);
+          this.user.fullName =
+            decodedToken.given_name + ' ' + decodedToken.family_name;
+          this.user.title = decodedToken.title;
+          this.user.userPhoto = decodedToken.photo;
+        });
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -76,5 +91,9 @@ export class LayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       ? this.themeService.setTheme('light-mode')
       : this.themeService.setTheme('dark-mode');
     this.themeToggle = !this.themeToggle;
+  }
+
+  logout(): void {
+    this.oidcSecurityService.logoff().subscribe((result) => {});
   }
 }
